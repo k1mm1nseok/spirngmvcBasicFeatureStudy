@@ -2,7 +2,10 @@ package hello.springmvc.basic.requestmapping;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.awt.*;
 
 @RestController
 public class MappingController {
@@ -60,6 +63,18 @@ public class MappingController {
     @GetMapping(value = "/mapping-header", headers = "mode=debug")
     public String mappingHeader() {
         log.info("mappingHeader");
+        return "ok";
+    }
+
+    @PostMapping(value = "/mapping-consume", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String mappingConsumes() {
+        log.info("mappingConsumes");
+        return "ok";
+    }
+
+    @PostMapping(value = "/mapping-produce", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String mappingProduces() {
+        log.info("mappingProduces");
         return "ok";
     }
 }
